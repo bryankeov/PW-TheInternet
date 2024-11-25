@@ -10,3 +10,15 @@ test.describe("A/B Testing", async () => {
         expect(page.url("https://the-internet.herokuapp.com/abtest"))
     })
 })
+
+test.describe("Add/Remove Elements", async () => {
+    test("Click link", async ({page}) => {
+        await page.locator(`a[href="/add_remove_elements/"]`)
+        expect(page.url("https://the-internet.herokuapp.com/add_remove_elements/"))
+    })
+
+    test("Add element", async ({page}) => {
+        await page.getByRole("button", { name : "Add Element"})
+        expect(page.getByRole("button", { class: "added-manually"}))
+    })
+})
